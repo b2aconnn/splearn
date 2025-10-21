@@ -10,7 +10,7 @@ import static toby.spring.splearn.domain.MemberStatus.*;
 @Getter
 @ToString
 public class Member {
-    private String email;
+    private Email email;
 
     private String nickname;
 
@@ -47,7 +47,7 @@ public class Member {
         PasswordEncoder passwordEncoder
     ) {
         Member member = new Member();
-        member.email = requireNonNull(createInfo.email());
+        member.email = new Email(createInfo.email());
         member.nickname = requireNonNull(createInfo.nickname());
         member.passwordHash = requireNonNull(passwordEncoder.encode(createInfo.password()));
 
