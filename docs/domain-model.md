@@ -47,27 +47,36 @@
 _Entity_
 
 #### 속성
-- email: 이메일 - ID
-- nickname: 닉네임
-- passwordHash: 비밀번호
-- status: 회원 상태
+- `email`: 이메일 - ID
+- `nickname`: 닉네임
+- `passwordHash`: 비밀번호
+- `status`: 회원 상태
 
-### 회원 상태(Member Status)
+#### 행위
+- `static create()`: 회원 생성: email, nickname, password, passwordEncoder
+- `activate()`: 가입을 완료시킨다.
+- `deactivate()`: 탈퇴 시킨다.
+- `verifyPassword()`: 비밀번호를 검증한다
+
+### 회원 상태(MemberStatus)
 _Enum_
 #### 상수
 - PENDING: 가입 대기
 - ACTIVE: 가입 완료
 - DEACTIVATED: 탈퇴
 
+### 비밀번호 인코더 (PasswordEncoder)
+_Domain Service_
 #### 행위
-- constructor(): 회원 생성: email, nickname, passwordHash, status
-- activate: 가입을 완료시킨다.
-- deactivate : 탈퇴 시킨다.
+- `encode()`: 비밀번호 암호화하기
+- `matches()`: 비밀번호 검증하기
 
 #### 규칙 (비즈니스 룰)
 - 회원 생성 후 상태는 가입 대기
 - 일정 조건을 만족하면 가입 완료가 된다
 - 가입 완료 상태에서는 탈퇴할 수 있다
+- 회원이 비밀번호는 해시를 만들어서 저장한다
+- 비밀번호를 해시를 이용해서 검증한다
 
 ### 강사
 
